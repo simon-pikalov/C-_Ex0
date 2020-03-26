@@ -17,7 +17,7 @@ int main() {
 	cout << phonetic::find(text, "Be") << endl;   // should print "be"
 	cout << phonetic::find(text, "happy") << endl;   // should print "haffy"
 	try {
-		cout << phonetic::find(text, "happ") << endl;   // should throw an exception - "happ" is not a full word in the sentence
+		cout << phonetic::find(text, "Test") << endl;   // should throw an exception - "happ" is not a full word in the sentence
 	} catch (exception& ex) {
 	 	cout << "   caught exception: " << ex.what() << endl;  // should print "Did not find the word 'happ' in the text"
 	}

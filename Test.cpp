@@ -103,8 +103,6 @@ TEST_CASE("Test replacement of  c , k and q") {
 
 }
 
-
-ackuisitivenesses
 TEST_CASE("Test replacement of s and z") {
     string text = " saw undemonstrativenesses interchangeablenesses straightforwardnesses representation s  administrators straightforwardness diastereoisomerisms counterculturalisms ";
             CHECK(find(text, "undemonstrativenesses") == string("undemonstrativenesses"));
