@@ -124,14 +124,14 @@ bool similiar (std::string str1  , std::string str2) {
 }
 
 
-bool checkValidWord(string word ){
+// bool checkValidWord(string word ){
 
-    //case muliple word's
-    if (word.find_first_of(' ') != string::npos||word.find_first_of('\n') != string::npos||word.find_first_of('\t') != string::npos)
-        return false;
+   
+//     if (word.find_first_of(' ') != string::npos||word.find_first_of('\n') != string::npos||word.find_first_of('\t') != string::npos||word.size==0)
+//         return false;
 
-return true;
-}
+// return true;
+// }
 
 
 
@@ -145,7 +145,7 @@ namespace phonetic {
  */
     string find(string text ,string word ){
 
-        if(checkValidWord(word)) { //if it's an empty word , or more than one word , or contain symbol's different than a-Z throw an error
+        if(word.size()==0) { //if it's an empty word , or more than one word , or contain symbol's different than a-Z throw an error
             throw notValidWordException;
         }
         std::string del  = " \n\t";
