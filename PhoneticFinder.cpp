@@ -67,7 +67,7 @@ std::vector<std::string> split(std::string txt, std::string delimeter ) {
         end++;
     }
     ans.push_back(txt.substr(start,end-start));
-return ans;
+    return ans;
 }
 
 
@@ -76,7 +76,7 @@ void printString ( std::vector<std::string> vec) {
     for (int i = 0; i < vec.size(); ++i) {
         std::cout<<"["<<vec.at(i)<<"]";
     }
-std::cout<<std::endl;
+    std::cout<<std::endl;
 }
 
 void printInttArr ( std::vector<int> vec) {
@@ -91,7 +91,7 @@ std::string toLowerCase(std::string str){
         str[i]=tolower(str[i]);
 
     }
-return str;
+    return str;
 }
 
 std::vector<int> catagoryChar(std::string  str) {
@@ -124,6 +124,16 @@ bool similiar (std::string str1  , std::string str2) {
 }
 
 
+bool checkValidWord(string word ){
+
+    //case muliple word's
+    if (word.find_first_of(' ') != string::npos||word.find_first_of('\n') != string::npos||word.find_first_of('\t') != string::npos)
+        return false;
+
+return true;
+}
+
+
 
 
 namespace phonetic {
@@ -133,34 +143,35 @@ namespace phonetic {
  * @param word : the word to search for
  * @return sting if there is a match and throw an error otherwise.
  */
-string find(string text ,string word ){
+    string find(string text ,string word ){
 
-    if(word.length()==0||word.find("\n")||word.find("\t")) { //if it's an empty word , or more than one word , or contain symbol's different than a-Z throw an error
-        throw notValidWordException;
+        if(checkValidWord(word)) { //if it's an empty word , or more than one word , or contain symbol's different than a-Z throw an error
+            throw notValidWordException;
+        }
+        std::string del  = " \n\t";
+        std::vector<std::string>  sTxt = split(text,del);
+        for (int i = 0; i < sTxt.size(); ++i) {
+            if(sTxt.at(i).size()!=word.size()) continue;
+            if(similiar(sTxt.at(i),word)) {
+                return sTxt[i];
+            }
+        }
+
+        std::cout<<"cant find "<<word<<"in the text";
+        throw wordNotFoundException;
+
     }
-
-    std::string del  = " \n\t";
-    std::vector<std::string>  sTxt = split(text,del);
-    for (int i = 0; i < sTxt.size(); ++i) {
-       if(sTxt.at(i).size()!=word.size()) continue;
-       if(similiar(sTxt.at(i),word)) {
-           return sTxt[i];
-       }
-    }
-
-    std::cout<<"cant find "<<word<<"in the text";
-    throw wordNotFoundException;
-
-}
 }
 
 
-// int main() {
-//     string text = "Dond vorri be haffy";
-//     cout << find(text, "dont") << endl;   // should print "Dond"
-//     cout << find(text, "worry") << endl;   // should print "vorri"
-//     cout << find(text, "Be") << endl;   // should print "be"
-//     cout << find(text, "happy") << endl;   // should print "haffy"
 
-//     return 0;
-// }
+
+//  int main() {
+//      string text = "Dond vorri be haffy";
+//      cout << phonetic::find(text, "dont") << endl;   // should print "Dond"
+//      cout << phonetic::find(text, "worry") << endl;   // should print "vorri"
+//      cout << phonetic::find(text, "Be") << endl;   // should print "be"
+//      cout << phonetic::find(text, "happy") << endl;   // should print "haffy"
+
+//      return 0;
+//  }

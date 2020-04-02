@@ -15,4 +15,6 @@ void printInttArr ( std::vector<int> vec) ;
 std::string toLowerCase(std::string str);
 std::vector<int> catagoryChar(std::string  str);
 bool similiar (std::string str1  , std::string str2);
+bool checkValidWord(string word );
+
 
